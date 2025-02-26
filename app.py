@@ -308,7 +308,14 @@ def recognize_speech(language="en-US"):
 # Main chat interface
 st.title('AI Mental Health Assistant')
 
-language = st.selectbox("Select the language of speech", ["English", "Arabic", "German"], index=0)
+language_options = {
+    "English": "en-US",
+    "Arabic": "ar-SA",
+    "German": "de-DE"
+}
+
+language_code = st.selectbox("Select the language of speech", options=list(language_options.keys()), index=0)
+language = language_options[language_code]
 
 if 'current_conversation' in st.session_state:
     current_conv = safe_db_operation(
